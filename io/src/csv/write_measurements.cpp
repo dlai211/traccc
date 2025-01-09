@@ -29,7 +29,7 @@ void write_measurements(
         measurements_view);
 
     // Write the measurements in .csv format.
-    file << "surface_link,measurement_id,local0,local1,var0,var1\n";
+    file << "surface_link,measurement_id,local0,local1,var_local0,var_local1\n";
 
     for (const traccc::measurement& mm : measurements) {
 
