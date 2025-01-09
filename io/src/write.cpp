@@ -9,6 +9,7 @@
 #include "traccc/io/write.hpp"
 
 #include "csv/write_cells.hpp"
+#include "csv/write_measurements.hpp"
 #include "json/write_digitization_config.hpp"
 #include "obj/write_seeds.hpp"
 #include "obj/write_spacepoints.hpp"
@@ -81,14 +82,13 @@ void write(std::size_t event, std::string_view directory,
            measurement_collection_types::const_view measurements) {
 
     switch (format) {
-        case data_format::binary:
-            details::write_binary_collection(
+        case data_format::csv:
+            csv::write_measurements(
                 get_absolute_path((std::filesystem::path(directory) /
                                    std::filesystem::path(get_event_filename(
-                                       event, "-measurements.dat")))
+                                       event, "-measurements.csv")))
                                       .native()),
-                traccc::measurement_collection_types::const_device{
-                    measurements});
+                measurements);
             break;
         default:
             throw std::invalid_argument("Unsupported data format");
