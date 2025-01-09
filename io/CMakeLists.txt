@@ -76,6 +76,8 @@ traccc_add_library( traccc_io io TYPE SHARED
   "src/json/read_digitization_config.cpp"
   "src/json/write_digitization_config.hpp"
   "src/json/write_digitization_config.cpp"
+  "src/csv/write_measurements.hpp"
+  "src/csv/write_measurements.cpp"
   "src/obj/write_seeds.hpp"
   "src/obj/write_seeds.cpp"
   "src/obj/write_spacepoints.hpp"
