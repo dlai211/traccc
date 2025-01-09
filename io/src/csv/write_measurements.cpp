@@ -29,6 +29,8 @@ void write_measurements(
         measurements_view);
 
     // Write the measurements in .csv format.
+    file << "surface_link,measurement_id,local0,local1,var0,var1\n";
+
     for (const traccc::measurement& mm : measurements) {
 
         // Print debug info
@@ -38,8 +40,6 @@ void write_measurements(
         //         << ", Variance: (" << mm.variance[0] << ", " << mm.variance[1] << ")"
         //         << ", Cluster Link: " << mm.cluster_link
         //         << ", Measurement Dimension: " << mm.meas_dim << "\n";
-
-        file << "surface_link,measurement_id,local0,local1,var0,var1\n";
  
         file << mm.surface_link << ',' << mm.measurement_id << ',' 
              << mm.local[0] << ',' << mm.local[1] << ',' 
