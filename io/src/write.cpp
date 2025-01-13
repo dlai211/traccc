@@ -81,18 +81,21 @@ void write(std::size_t event, std::string_view directory,
            traccc::data_format format,
            measurement_collection_types::const_view measurements) {
 
-    switch (format) {
-        case data_format::csv:
-            csv::write_measurements(
+    details::write_binary_collection(
                 get_absolute_path((std::filesystem::path(directory) /
-                                   std::filesystem::path(get_event_filename(
-                                       event, "-measurements.csv")))
-                                      .native()),
-                measurements);
-            break;
-        default:
-            throw std::invalid_argument("Unsupported data format");
-    }
+                                    std::filesystem::path(get_event_filename(
+                                        event, "-measurements.dat")))
+                                        .native()),
+                traccc::measurement_collection_types::const_device{
+                    measurements});
+
+    csv::write_measurements(
+        get_absolute_path((std::filesystem::path(directory) /
+                            std::filesystem::path(get_event_filename(
+                                event, "-measurements.csv")))
+                                .native()),
+        measurements);
+    
 }
 
 void write(std::size_t event, std::string_view directory,
